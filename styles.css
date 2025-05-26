@@ -1,0 +1,230 @@
+html {
+    transform: scale(0.75);
+    transform-origin: 0 0;
+    width: 133.33%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /*background-color: #239ac2;*/
+    margin: 0;
+    position: relative;
+  }
+  
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+
+
+  .birthdayCard {
+    position: relative;
+    width: 500px;
+    height: 700px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: perspective(2500px);
+    transition: 1s;
+    margin-top: 40px;
+     z-index: 1;
+  }
+  
+  .birthdayCard:hover {
+    transform: perspective(2500px) rotate(5deg);
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
+      0 10px 100px rgba(0, 0, 0, 0.5);
+  }
+  
+  .birthdayCard:hover .cardFront {
+    transform: rotateY(-160deg);
+  }
+  
+  .birthdayCard:hover .happy {
+    visibility: hidden;
+  }
+  
+  .birthdayCard:hover .cardInside {
+    opacity: 1;
+  }
+
+  .cardFront {
+    position: relative;
+    background-color: #fff;
+    width: 500px;
+    height: 700px;
+    overflow: hidden;
+    transform-origin: left;
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
+      30px 0 50px rgba(0, 0, 0, 0.4);
+    transition: 0.6s;
+  }
+  
+  .happy {
+    font-family: Tahoma, sans-serif;
+    text-align: center;
+    margin: 60px;
+    background-image: linear-gradient(120deg, #ffd856 0%, #f98c6e 100%);
+    transition: 0.1s;
+  }
+  
+  .balloons {
+    position: absolute;
+  }
+  
+  .balloon-1,
+  .balloon-2,
+  .balloon-3,
+  .balloon-4 {
+    position: absolute;
+    width: 150px;
+    height: 160px;
+    border-radius: 50%;
+  }
+  
+  .balloon-1 {
+    background-color: rgba(255, 40, 90, 0.7);
+    left: -10px;
+    top: 140px;
+  }
+  
+  .balloon-2 {
+    background-color: rgba(9, 215, 160, 0.7);
+    left: 120px;
+    top: 60px;
+  }
+  
+  .balloon-3 {
+    background-color: rgba(255, 186, 26, 0.7);
+    left: 250px;
+    top: 100px;
+  }
+  
+  .balloon-4 {
+    background-color: rgba(12, 122, 159, 0.7);
+    left: 400px;
+    top: 140px;
+  }
+  
+  .balloon-1::before,
+  .balloon-2::before,
+  .balloon-3::before,
+  .balloon-4::before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 250px;
+    background-color: #ffc848;
+    top: 160px;
+    left: 75px;
+  }
+  
+  .balloon-1::after,
+  .balloon-2::after,
+  .balloon-3::after,
+  .balloon-4::after {
+    content: "";
+    position: absolute;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    top: 160px;
+    left: 70px;
+  }
+  
+  .balloon-1::after {
+    border-bottom: 15px solid #ff3e6b;
+  }
+  
+  .balloon-2::after {
+    border-bottom: 15px solid #04b183;
+  }
+  
+  .balloon-3::after {
+    border-bottom: 15px solid #ffc94c;
+  }
+  
+  .balloon-4::after {
+    border-bottom: 15px solid #13a9bd;
+  }
+  
+  .cardInside {
+    position: absolute;
+    background-color: #fff;
+    width: 500px;
+    height: 700px;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    opacity: 0; /* 1st hiding the text */
+    transition: opacity 0.6s; /* fr transition */
+    border: 1px solid black;
+    /* box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2); */
+  }
+  
+  p {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, cursive;
+    margin: 60px;
+    font-size: 36px;
+    color: #333;
+  }
+  
+  .name {
+    position:absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 26px;
+    color: #333;
+  }
+  
+  .back {
+    font-family: Tahoma, sans-serif;
+    color: #333;
+    text-align: center;
+    margin: 50px;
+    font-size: 24px;
+    outline-color: #333;
+    outline-style: dotted;
+  }
+
+  audio {
+    display: none;
+}
+
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250vw;
+  height: 200vh;
+  object-fit:fill;
+  z-index: -1;
+  opacity: 0.6; /* adjust for transparency */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.15; }
+}
+
+#backgroundText {
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Brush Script MT', cursive;
+  font-size: 8vw;
+  color: #ffffff; /* solid white */
+  font-weight: bold;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0; /* ensures it's behind the card but above the video */
+  white-space: nowrap;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.8); /* strong contrast shadow */
+  margin-top: 400px;
+}
+
+
